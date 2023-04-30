@@ -6,7 +6,7 @@ probably will add more here soon
 ## setup
 modules are ~30MB so you can host this on a raspberry pi or anything.
 ```sh
-git clone https://github.com/woofledev/badmsgplatform
+git clone https://github.com/woofledev/badmsgplatform && cd badmsgplatform
 npm i
 npm start
 ```
