@@ -11,7 +11,6 @@ $(() => {
 socket.on(roomid, addMessages);
 
 function addMessages(message){
-  console.log("added messages")
   const converter = new showdown.Converter();
   const htmlContent = twemoji.parse(converter.makeHtml(message.message), { folder: 'svg', ext:'.svg' });
   const messageDiv = $('<div>').attr('id', 'message-' + 'box').addClass('msg')
@@ -27,23 +26,20 @@ function addMessages(message){
 }
 
 function getMessages(){
-  console.log("getted messages")
   $.get(location.origin+'/messages?room_id='+roomid, (data) => {
     data.forEach(addMessages);
   });
 }
 function sendMessage(message){
-  console.log("sendde messages")
   pfpurl=localStorage.getItem("pfpurl")
   if(!message.pfpuri){message.pfpuri='';}
+  $("#message").val('');
   if(pfpurl.value===""){
     $.post(location.origin+'/messages/', message, () => {
-      $("#message").val('');
       $('#messages').scrollTop($('#messages')[0].scrollHeight);
     });
   } else {
     $.post(location.origin+'/messages/', message, () => {
-      $("#message").val('');
       $('#messages').scrollTop($('#messages')[0].scrollHeight);
     });
   }}
@@ -112,7 +108,7 @@ document.addEventListener('DOMNodeRemoved', function(event) {
     settingsExists = false;
   }
 });
-function DANGEROUS_ONLYIFYOUKNOWWHATYOUREDOING_DIRV(){
+/*function DANGEROUS_ONLYIFYOUKNOWWHATYOUREDOING_DIRV(){
   g = confirm('THIS WILL ENABLE PEOPLE TO SEE YOUR LOCATION/IP ADDRESS.\n\nOnly press "OK" if you know what you\'re doing.')
   if (g){
     localStorage.setItem("DANGEROUS_ONLYIFYOUKNOWWHATYOUREDOING_IMGSHOW", "true")
@@ -120,4 +116,4 @@ function DANGEROUS_ONLYIFYOUKNOWWHATYOUREDOING_DIRV(){
   } else {
     localStorage.setItem("DANGEROUS_ONLYIFYOUKNOWWHATYOUREDOING_IMGSHOW", "false")
   }
-}
+}*/
