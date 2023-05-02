@@ -1,7 +1,8 @@
 # badmsgplatform
-a simple room based messaging platform which doesn't steal user data. made in express, sqlite3 and socket.io
+![repo size](https://img.shields.io/github/repo-size/woofledev/badmsgplatform)
 
-probably will add more here soon
+a simple, small size, room based messaging platform in nodejs, express and socket.io.<br>
+readme still in progress!!
 
 ## setup
 modules are ~30MB so you can host this on a raspberry pi or anything.
