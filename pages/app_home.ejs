@@ -16,7 +16,7 @@
   <div id="messages"><br>
     <h3>Join a Room</h3>
       <input type="text" id="room-id" required placeholder="Room ID">
-      <button id="joinbtn" class="btn btn-primary" type="submit" onclick='joinaRoom()'>Join</button>
+      <button id="joinbtn" class="btn btn-primary" type="submit" onclick='joinaRoom(document.getElementById("room-id").value)'>Join</button>
   <br><br><small>or</small><br><br>
   <div>
     <h3>Create a Room</h3>
@@ -34,8 +34,7 @@
   <br><br><br><br>
   <h3>Last joined</h3><div id="lastJoined"></div>
   <script>
-    function joinaRoom(){
-      const roomId = document.getElementById("room-id").value;
+    function joinaRoom(roomId){
       let joinedRooms = localStorage.getItem('joinedRooms');
       if (!joinedRooms) {
         joinedRooms = roomId;
@@ -69,12 +68,13 @@
   .then(data => {
     const roomId = data.roomId;
     if (roomId) {
-      window.location.href = `/app/${roomId}`;
+      joinaRoom(roomId);
     } else {
-      console.error('Error creating room:', data);
+      alert('Error creating room:', data);
+      console.error(data);
     }
   })
-  .catch(error => console.error('Error creating room:', error));
+  .catch(error => alert('Error creating room:', error));
 });
   </script>
 </div>
