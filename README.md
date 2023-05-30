@@ -3,6 +3,7 @@
 
 <br>
 mobile app source code for badmsgplaform, made in java.
+
 ## building
 the apk provided is signed, so i recommend you generate your own RSA key optionally.
 
