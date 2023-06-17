@@ -44,7 +44,7 @@ app.get('/messages', (req, res) => {
         }
       });
     } else {
-      return es.sendStatus(404).send({err: "that room doesn't exist"})
+      return res.status(404).send({err: "that room doesn't exist"})
     }
   });
   
