@@ -24,7 +24,7 @@ app.get('/messages', (req, res) => {
     });
   });
   
-  app.post('/messages', (req, res) => {
+  app.post('/messages', async (req, res) => {
     const name = req.session.username;
     const { message, pfpuri, room_id } = req.body;
     var sant = htmlsant(message, {allowedTags: ['img','video','code'], allowedAttributes: []});
