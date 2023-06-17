@@ -10,7 +10,7 @@ app.get('/api/proxyhs', (req, res) =>{
 
         var request = client.request(opt, (pres) => {
             var ctype = pres.headers['content-type'];
-            if (ctype && (ctype.includes('image') || ctype.includes('video') || ctype.includes('svg'))) {
+            if (ctype && (ctype.includes('image') || ctype.includes('video') || ctype.includes('svg')) || target.startsWith("https://twemoji.maxcdn.com")) {
                 res.writeHead(pres.statusCode, pres.headers);
                 pres.pipe(res);
             } else {
