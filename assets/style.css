@@ -7,6 +7,7 @@ hr,pre {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  position: relative;
 }
 img {
   width: 35%;
@@ -38,8 +39,10 @@ img.emoji {
   justify-content: center;
   position: absolute;
   bottom: 0;
+  right: 20px;
   border-radius: 6px;
-  width: 81.3%;
+  width: calc(100% - 50px); /* Adjusted the width to match the container size */
+  margin: 10px; /* Added margin for spacing */
 }
 
 #message-box {
