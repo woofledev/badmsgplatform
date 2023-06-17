@@ -28,17 +28,23 @@ app.get('/messages', (req, res) => {
     const name = req.session.username;
     const { message, pfpuri, room_id } = req.body;
     var sant = htmlsant(message, {allowedTags: ['img','video','code'], allowedAttributes: []});
-    if (/^\s*$/.test(sant)) {
-      return res.send('<script>alert("Bad request: whitespaces.")</script>');
-    }
-    db.run('INSERT INTO messages (name, message, pfpuri, room_id) VALUES (?, ?, ?, ?)', [name, sant, pfpuri, room_id], (err) => {
-      if (err) {
-        console.error(err.message);
-        res.sendStatus(500);
-      } else {
-        io.emit(room_id, {name, message: sant, pfpuri});
-        res.sendStatus(200);
+
+    var validated = await validateRoom(room_id);
+    if (validated.exists) {
+      if (/^\s*$/.test(sant)) {
+        return res.status(500).send({err: "whitespace found, not sending"});
       }
-    });
+      db.run('INSERT INTO messages (name, message, pfpuri, room_id) VALUES (?, ?, ?, ?)', [name, sant, pfpuri, room_id], (err) => {
+        if (err) {
+          console.error(err.message);
+          res.sendStatus(500);
+        } else {
+          io.emit(room_id, {name, message: sant, pfpuri});
+          res.sendStatus(200);
+        }
+      });
+    } else {
+      return es.sendStatus(404).send({err: "that room doesn't exist"})
+    }
   });
   
