@@ -13,6 +13,7 @@ var htmlsant = require('sanitize-html')
 // [ircmp] src/init.js
 // [ircmp] src/api/messages.js
 // [ircmp] src/api/rooms.js
+// [ircmp] src/api/pwdchange.js
 // [ircmp] src/routes/login.js
 // [ircmp] src/routes/proxy.js
 // [ircmp] src/routes.js
